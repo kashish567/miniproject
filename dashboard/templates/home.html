@@ -1,34 +1,36 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>authentication system</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-
-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-
-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
-crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>authentication system</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <style>
+    body {
+      background-image:url("{% static 'dashboard/bh.jpeg' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 120vh;
+    }
+  </style>
 </head>
 <body>
-<nav class="navbar bg-dark navbar-dark p-2">
-<div class="container-fluid">
-<span class="navbar-brand mb-0 h1">INTERVIEWPREP</span>
-</div>
-</nav>
-<h1 class="text-center text-success">INTERVIW PREP WEBSITE</h1>
-<div class="container-fluid">
+  <nav class="navbar bg-dark navbar-dark p-2">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">INTERVIEWPREP</span>
+    </div>
+  </nav>
+  <h1 style="color: white;" class="text-center">INTERVIW PREP WEBSITE</h1>
+  <div class="container-fluid">
     {% if request.user.is_authenticated %}
-<p class="h3 text-success">You are Logged In</p>
- <p class="text-success h3">email : {{ request.user.email }}</p>
- {% else %}
-<p class="text-danger h3">User is not logged in </p>
- {% endif %}
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-
-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-
-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" 
-crossorigin="anonymous"></script>
+      <p class="h3 text-white">You are Logged In</p>
+      <p class="text-white h3">email : {{ request.user.email }}</p>
+    {% else %}
+      <p class="text-danger h3">User is not logged in </p>
+    {% endif %}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from .models import *
 # Create your views here.
 def home(request):
      return render(request, 'home.html')
@@ -52,3 +53,21 @@ def logout_user(request):
     logout(request)
     return redirect('home') 
  
+from django.shortcuts import render
+from .forms import InterviewQuestionForm
+
+def add_interview_question(request):
+    if request.method == 'POST':
+        form = InterviewQuestionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # redirect to success page
+    else:
+        form = InterviewQuestionForm()
+    
+    return render(request, 'add_interview_question.html', {'form': form})
+
+def display_que(request):
+    questions=InterviewQuestion.objects.all()
+    return render(request,'display_que.html',{'questions':questions})
+

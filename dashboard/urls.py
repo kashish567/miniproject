@@ -15,11 +15,20 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import home,register,login_user,logout_user
+from . views import *
 urlpatterns = [
     path('', home,name="home"),
     # path('login/', auth_views.LoginView.as_view(), name='login'),
     path("register/", register, name="register"),
     path("login_user/", login_user, name="login_user"),
     path("logout_user/", logout_user, name="logout_user"),
+    path("add_que/", addIntQues, name="add_que"),
+    path("add_catg/",addCatg,name="add_catg"),
+    path("addAns/",addAns,name="add_Ans"),
+    path("displayQues/",displayQues,name="disQues"),
+    path("getAns/<int:pk>/",getAns,name = "getAns"),
+    path("searchRecmd/",searchRecmd,name="searchRcmd"),
+    path("search/",searchQuest,name = "search"),
+
+    # path("dislay_que/", display_que , name="display_que"),
 ]

@@ -1,0 +1,81 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+  <div class="row">
+    {% include 'components/messages.html' %}
+    <form class="d-flex" method="post" action="{% url 'search' %}">
+      {% csrf_token %}
+      <div id="autocomplete" class="autocomplete input-group mb-3">
+        <input
+          class="form-control me-2"
+          type="text"
+          name="searchQ"
+          placeholder="Search"
+          aria-label="Search"
+          id="srq"
+        />
+        <ul class="autocomplete-result-list"></ul>
+      </div>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    
+    </form>
+
+    {% if ans %}
+    <div class="row my-5">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        {% for x in ans.qs %}
+        <div class="accordion-item" style="border: 2px solid black;">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{x.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+              {{x.ques}}
+            </button>
+          </h2>
+          <div id="flush-collapseOne{{x.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">{{x.ans}}</div>
+          </div>
+          {% endfor %}
+          </div>          
+    </div>
+  {% endif %}
+
+
+    {% if srch %}
+
+    <div class="row my-5">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item" style="border: 2px solid black;">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{x.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                {{ques.quest}}
+              </button>
+            </h2>
+            <div id="flush-collapseOne{{x.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">{{ans.ans}}</div>
+            </div>
+        
+          </div>          
+    </div>
+
+    {% endif %}
+
+  </div>
+
+
+
+
+  
+
+  <script>
+
+
+  </script>
+
+
+
+
+
+
+{% endblock %}
+
